@@ -78,10 +78,10 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
   }
 }
 
-nonroad <- subset(NEI, type=='NON-ROAD')
-onroad <- subset(NEI, type=='ON-ROAD')
-point <- subset(NEI, type=='POINT')
-nonpoint <- subset(NEI, type=='NONPOINT')
+nonroad <- subset(NEI, type=='NON-ROAD' & fips == "24510")
+onroad <- subset(NEI, type=='ON-ROAD' & fips == "24510")
+point <- subset(NEI, type=='POINT' & fips == "24510")
+nonpoint <- subset(NEI, type=='NONPOINT' & fips == "24510")
 
 point_sum <- tapply(point$Emissions, point$year, sum)
 nonpoint_sum <- tapply(nonpoint$Emissions, nonpoint$year, sum)
@@ -172,5 +172,3 @@ x05mt_la <- mt05_la$Emissions
 x08mt_la <- mt08_la$Emissions
 
 barplot(c(sum(x99mt_la), sum(x02mt_la), sum(x05mt_la), sum(x08mt_la)), xlab="Year", ylab="Motor Related PM2.5 Emission, Los Angeles, CA", names.arg=c("1999", "2002", "2005", "2008"))
-
-
